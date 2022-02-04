@@ -165,8 +165,6 @@ class CPResource:
 		for c in id:
 			if not c in NMTOKEN_CHARS:
 				c='_'
-			if not newID and not (c in NMSTART_CHARS):
-				newID="ID_"
 			newID=newID+c
 
 		return newID
