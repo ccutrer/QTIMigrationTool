@@ -79,7 +79,7 @@ class QTIParserV1Options:
 # QTIException Class
 # ------------------
 #
-class QTIException:
+class QTIException(Exception):
 	def __init__ (self,msg,param=None):
 		if param:
 			self.msg=msg+": "+param
@@ -6346,8 +6346,8 @@ class QTIParserV1(handler.ContentHandler, handler.ErrorHandler):
 				f=open(path,'rb')
 				try:
 					self.Parse(f,path)
-				except QTIException:
-					print(sys.exc_info()[0])
+				except QTIException as e:
+					print(e)
 				finally:
 					f.close()
 
