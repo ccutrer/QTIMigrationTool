@@ -2463,8 +2463,11 @@ class D2LTimeLimit(D2LBase):
 		self.data=self.data.strip()
 		if self.data:
 			try:
-				# d2l time is in minutes, qti does time in seconds
-				self.container.SetDuration("%s" % (float(self.data) * 60))
+				minutes = float(self.data)
+				# d2l exports set time_limit to 0 when no time limit is configured
+				if minutes > 0:
+					# d2l time is in minutes, qti does time in seconds
+					self.container.SetDuration("%s" % (minutes * 60))
 			except ValueError:
 				self.PrintWarning("Warning: invalid time limit value: %s" % self.data)
 
